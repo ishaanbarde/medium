@@ -1,9 +1,13 @@
-import { Hono } from 'hono'
+import { Hono } from "hono";
+import type { AppType } from "./types/hono";
+import userRoute from "./routes/user";
 
-const app = new Hono()
+const app = new Hono<AppType>();
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+app.route("/users", userRoute);
 
-export default app
+app.get("/", (c) => {
+  return c.text("Hello Hono!");
+});
+
+export default app;
